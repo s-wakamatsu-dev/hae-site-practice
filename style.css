@@ -84,6 +84,8 @@ main > section:first-of-type h1 {
   font-size: 15px;
   line-height: 1.2;
   text-decoration: none;
+  
+  transition: filter 0.2s ease;
 }
 
 .home-link::after {
@@ -382,6 +384,8 @@ main > section:first-of-type h1 {
   margin: 0;
 
   position: relative;
+
+  transition: background-color 0.2s ease;
 }
 
 /* HAEの治療 */
@@ -684,7 +688,7 @@ main > section:first-of-type h1 {
     margin: 0;
     background-color: transparent;
     box-shadow: none;
-    position:sticky;
+    position: sticky;
     top: 0;
     z-index: 100;
   }
@@ -885,4 +889,26 @@ main > section:first-of-type h1 {
   .footer-menu ul {
     justify-content: flex-start;
   }
+}
+
+/* ボタン型リンクを除くリンクのホバー */
+a:not(.btn-blue):not(.home-link):hover {
+  text-decoration: underline;
+}
+
+summary:hover {
+  text-decoration: underline;
+}
+
+/* 青いボタンにマウスを重ねたとき */
+.btn-blue:hover {
+  background-color: #003b73;
+  text-decoration: none;
+}
+
+
+/* 緑色のホームボタンのホバー */
+.home-link:hover {
+  filter: brightness(0.9);
+  text-decoration: none;
 }
