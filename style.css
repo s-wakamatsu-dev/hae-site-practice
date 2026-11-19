@@ -117,19 +117,33 @@ main > section:first-of-type h1 {
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+  position: relative;
 }
 
 .header-nav > ul > li > details > summary::after {
-    content: "▼";
-    font-size: 12px;
-    margin-left: auto;
+  content: "▼";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background-color: #2e9fa9;
+  color: white;
+  border-radius: 50%;
+  font-size: 9px;
+  line-height: 1;
+  margin-left: 0;
+  flex-shrink: 0;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* 開いたときの矢印 */
 .header-nav > ul > li > details[open] > summary::after {
-    content: "▲";
+  content: "▲";
 }
-
 
 /* PC版：発作の治療と予防のプルダウン */
 @media (min-width: 960px) {
@@ -138,25 +152,62 @@ main > section:first-of-type h1 {
     position: relative;
   }
 
-  /* 開いたときの下位メニュー */
+  /* PC版：開いたときの下位メニュー */
   .header-nav > ul > li:first-child > details > ul {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 20px);
     left: 0;
 
+    width: 320px;
     background-color: white;
-    min-width: 280px;
+    border: 1px solid #2e9fa9;
+    border-radius: 6px;
+
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 12px 16px;
+
     z-index: 20;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
+  }
+
+  .header-nav > ul > li:first-child > details > ul::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 54px;
+
+    width: 16px;
+    height: 16px;
+
+    background-color: white;
+    border-top: 1px solid #2e9fa9;
+    border-left: 1px solid #2e9fa9;
+    transform: rotate(45deg);
+  }
+
+  /* 下位メニューの各項目を黒丸の配置基準にする */
+  .header-nav > ul > li:first-child > details > ul > li {
+    position: relative;
+  }
+
+  /* 各項目の左側に黒丸を表示する */
+  .header-nav > ul > li:first-child > details > ul > li::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #000;
+    border-radius: 50%;
   }
 
   .header-nav > ul > li:first-child > details > ul a {
-    padding: 16px;
+    padding: 16px 16px 16px 30px;
     min-height: 50px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px dashed #696969;
   }
 }
 
@@ -200,6 +251,11 @@ main > section:first-of-type h1 {
 
 /* PCではメニューボタンを非表示 */
 .menu-button {
+  display: none;
+}
+
+/* 下部の閉じるボタンは通常非表示 */
+.header-nav > ul > li.menu-close-item {
   display: none;
 }
 
@@ -255,6 +311,7 @@ main > section:first-of-type h1 {
 
 .shinpai {
   margin-bottom: 0;
+  padding-bottom: 20px;
 }
 
 .shinpai p {
@@ -542,10 +599,8 @@ main > section:first-of-type h1 {
   flex-wrap: wrap;
   list-style: none;
   gap: 24px;
-  margin-top: 16px;
-  /* 変更 */
-  padding: 0;
-  /* 追加 */
+  margin-top: 0;
+  padding-top: 30px;
 }
 
 .footer-menu a {
@@ -624,11 +679,13 @@ main > section:first-of-type h1 {
 
   /* ナビゲーションの表示領域 */
   .header-nav {
-    position: relative;
     min-height: 80px;
     margin: 0;
     background-color: transparent;
     box-shadow: none;
+    position:sticky;
+    top: 0;
+    z-index: 100;
   }
 
   /* メニュー項目は非表示 */
@@ -644,14 +701,29 @@ main > section:first-of-type h1 {
   }
 
   /* スマホ版：開閉できる親メニュー */
-.header-nav.is-open > ul > li > details > summary {
+  .header-nav.is-open > ul > li > details > summary {
     padding: 16px 20px;
-    border-bottom: 1px solid #ddd;
-}
+    border-bottom: 1px dashed #696969;
+  }
 
   /* スマホ版：下位メニューのリンク */
   .header-nav.is-open > ul > li > details > ul a {
+    position: relative;
     padding-left: 40px;
+  }
+
+  /* スマホ版：下位メニューの黒丸 */
+  .header-nav.is-open > ul > li > details > ul a::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 6px;
+    height: 6px;
+    background-color: #000;
+    border-radius: 50%;
   }
 
   /* メニューボタン */
@@ -670,7 +742,7 @@ main > section:first-of-type h1 {
     padding: 10px;
 
     background-color: white;
-    border: 2px solid rgb(48, 159, 169);
+    border: 2px solid #2e9fa9;
     border-radius: 4px;
 
     color: black;
@@ -678,16 +750,61 @@ main > section:first-of-type h1 {
     font-weight: 700;
     white-space: nowrap;
     cursor: pointer;
+
+    z-index: 11;
+  }
+
+  /* メニューが開いているときのボタン */
+  .header-nav.is-open .menu-button {
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* 下部の閉じるボタンを中央に配置 */
+  .header-nav.is-open > ul > li.menu-close-item {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0 8px;
+  }
+
+  /* 閉じるボタンの装飾 */
+  .menu-close-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ×を囲む丸い背景 */
+  .menu-close-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: #edf2f7;
+    border-radius: 50%;
+    font-size: 18px;
   }
 
   .header-nav.is-open > ul {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 80px;
-    left: 0;
-    right: 0;
+
+    top: 61px;
+    left: 20px;
+    right: 20px;
+
     background-color: white;
+    border: 2px solid #2e9fa9;
+    border-radius: 3px;
+    padding: 16px;
     z-index: 10;
   }
 
@@ -699,7 +816,7 @@ main > section:first-of-type h1 {
 
   .header-nav.is-open li a {
     padding: 16px 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px dashed #696969;
   }
 
   .header-nav.is-open li:last-child {
