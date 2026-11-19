@@ -17,7 +17,6 @@ menuButton.addEventListener("click", () => {
     menuIcon.textContent = "☰";
     menuButton.setAttribute("aria-label", "メニューを開く");
   }
-
 });
 
 // 下部の「閉じる」ボタンを取得
