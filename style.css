@@ -36,7 +36,8 @@ main > section:first-of-type h1 {
 /* ヘッダー全体 */
 .site-header {
   background-color: white;
-  padding: 20px;
+  max-width: 1183px;
+  height: 104px;
 }
 
 /* ロゴとホームリンク */
@@ -45,10 +46,12 @@ main > section:first-of-type h1 {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  max-width: 1160px;
+  max-width: 1163px;
   /* 追加 */
+  height: 100%;
   margin: 0 auto;
   /* 追加 */
+  padding: 10px 10px 6px 10px;
 }
 
 .logo {
@@ -59,8 +62,10 @@ main > section:first-of-type h1 {
 }
 
 .header-top > a:first-child {
+  flex: 0 1 304px;
   min-width: 0;
 }
+
 
 /* 緑色のホームリンク */
 .home-link {
@@ -84,7 +89,7 @@ main > section:first-of-type h1 {
   font-size: 15px;
   line-height: 1.2;
   text-decoration: none;
-  
+
   transition: filter 0.2s ease;
 }
 
@@ -302,6 +307,7 @@ main > section:first-of-type h1 {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-top: 0;
 }
 
 .subhead::before {
@@ -661,13 +667,6 @@ main > section:first-of-type h1 {
     margin-top: 0;
   }
 
-  .header-top > a:first-child {
-    flex: 1 1 0;
-  }
-
-  .logo {
-    max-width: 203px;
-  }
 
   .home-link {
     width: 132px;
@@ -905,7 +904,6 @@ summary:hover {
   background-color: #003b73;
   text-decoration: none;
 }
-
 
 /* 緑色のホームボタンのホバー */
 .home-link:hover {
