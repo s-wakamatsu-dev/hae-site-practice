@@ -303,10 +303,11 @@ main > section:first-of-type h1 {
 }
 
 .subhead::before {
-  content: "■";
-  color: #2c9fa9;
-  margin-right: 10px;
-  font-size: 12px;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: #2c9fa9;
+  flex-shrink: 0;
 }
 
 .shinpai {
